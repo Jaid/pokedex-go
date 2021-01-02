@@ -1,0 +1,13 @@
+{
+  "extends": "pokedex-go/base",
+  "include": [
+    "src/**/*.js",
+    "src/**/*.ts"
+  ],
+  "typeAcquisition": {
+    "enable": true
+  },
+  "compilerOptions": {
+    "baseUrl": "."
+  }
+}
