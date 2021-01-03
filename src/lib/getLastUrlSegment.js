@@ -7,5 +7,9 @@ export default urlString => {
     return null
   }
   const normalizedUrlPath = preventEnd(urlPath, "/")
-  return urlPath.split("/")
+  const segments = normalizedUrlPath.split("/")
+  if (!segments.length) {
+    return null
+  }
+  return segments.splice(-1)
 }

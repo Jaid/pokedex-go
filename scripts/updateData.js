@@ -18,7 +18,10 @@ async function job(argv) {
   await makeDir(gamemasterFolder)
   const gamemasterFileExists = await fsp.pathExists(gamemasterFile)
   if (gamemasterFileExists) {
+    const startTime = Date.now()
     gamemaster = await readFileJson(gamemasterFile)
+    const runTime = Date.now() - startTime
+    console.log()
   } else {
     gamemaster = await fetchGamemaster(gamemasterVersion)
     await fsp.outputJson5(gamemasterFile, gamemaster)
@@ -26,15 +29,14 @@ async function job(argv) {
   const pokemonDataFolder = path.join(__dirname, "..", "dist", "pokemonData")
   const pokemonDataFile = path.join(pokemonDataFolder, "data.json5")
   await makeDir(pokemonDataFolder)
-  // const pokemonDataFileExists = await fsp.pathExists(pokemonDataFile)
-  const pokemonDataFileExists = false
+  const pokemonDataFileExists = await fsp.pathExists(pokemonDataFile)
   if (pokemonDataFileExists) {
     pokemonData = await readFileJson(pokemonDataFile)
   } else {
     pokemonData = await fetchPokemonData()
     await fsp.outputJson5(pokemonDataFile, pokemonData)
   }
-  debugger
+  console.log("MOIN")
 }
 
 yargs
