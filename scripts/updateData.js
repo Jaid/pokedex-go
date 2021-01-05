@@ -3,6 +3,7 @@ import makeDir from "make-dir"
 import path from "path"
 import {getLatestVersionName} from "pokemongo-game-master"
 import readFileJson from "read-file-json"
+import Stoppuhr from "stoppuhr"
 import yargs from "yargs"
 
 import fetchGamemaster from "../src/lib/fetchGamemaster"
@@ -17,11 +18,10 @@ async function job(argv) {
   const gamemasterFile = path.join(gamemasterFolder, "gamemaster.json5")
   await makeDir(gamemasterFolder)
   const gamemasterFileExists = await fsp.pathExists(gamemasterFile)
+  const gamemasterStoppuhr = new Stoppuhr
   if (gamemasterFileExists) {
-    const startTime = Date.now()
     gamemaster = await readFileJson(gamemasterFile)
-    const runTime = Date.now() - startTime
-    console.log()
+    console.log(`Loaded gamemaster in ${gamemasterStoppuhr.totalText()}`)
   } else {
     gamemaster = await fetchGamemaster(gamemasterVersion)
     await fsp.outputJson5(gamemasterFile, gamemaster)
