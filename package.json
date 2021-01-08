@@ -56,5 +56,7 @@
     "typescript-config",
     "typescript-shareable-config"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "stat-size-text": "^1.0.0"
+  }
 }
