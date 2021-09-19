@@ -58,5 +58,6 @@
   ],
   "dependencies": {
     "stat-size-text": "^1.0.0"
-  }
+  },
+  "type": "module"
 }
